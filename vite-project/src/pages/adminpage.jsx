@@ -8,7 +8,7 @@ export default function Adminpage(){
         <div className="w-screen h-screen bg-purple-500 flex">
             <div className="w-[300px] h-full bg-green-800">
                 <div className="w-full h-[100px] bg-blue-300 flex items-center">
-                    <img src="src/assets/chat gpt.png" className="h-full"/>
+                    <img src="src/assets/react.svg" className="h-full"/>
                     <h2 className="text-2xl">Admin panel</h2>
                 </div>
 

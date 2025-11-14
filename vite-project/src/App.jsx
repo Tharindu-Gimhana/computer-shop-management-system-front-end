@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom' 
-import Adminpage from '../pages/adminpage'
+import {BrowserRouter , Routes , Route} from 'react-router-dom'
+import Adminpage from './pages/adminpage'
+import { Toaster } from 'react-hot-toast'
+import Loginpage from './pages/loginpage'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -9,11 +11,11 @@ function App() {
   return (
     <>
        <BrowserRouter>
+         <Toaster />
             <Routes path="/">
                 
                 <Route path="/" element={<h1>rotes</h1>}> </Route>
-                <Route path="login" element={<h2>route 2</h2>}></Route>
-                <Route path="students" element={<Productcard name="wddc"/>}></Route>
+                <Route path="login" element={<Loginpage />}></Route>
                 <Route path="admin/*" element={<Adminpage/>}></Route>
                 <Route path="/*" element={<Adminpage/>}></Route> 
           </Routes>
