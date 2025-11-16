@@ -13,11 +13,11 @@ export default function ProductDeleteButton(props) {
 		const token = localStorage.getItem("token");
 		axios
 			.delete(
-				import.meta.env.VITE_BACKEND_URL + "/products/" + productID,
+				import.meta.env.VITE_BACKENDURL + "/products/" + productID,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
-					},
+					}
 				}
 			)
 			.then(() => {

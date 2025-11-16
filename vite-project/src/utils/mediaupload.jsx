@@ -1,7 +1,4 @@
 import { createClient } from "@supabase/supabase-js";
-import axios from "axios";
-import { useState } from "react";
-import toast from "react-hot-toast";
 
 const url = "https://yoidbwjgljpgtmcnldbe.supabase.co";
 const key =
@@ -9,20 +6,30 @@ const key =
 
 const supabase = createClient(url, key);
 
-export default function uploadFile(file) {
-	return new Promise((resolve, reject) => {
+export default async function uploadFile(file) {
+	try {
 		const timeStamp = Date.now();
-		const fileName = timeStamp + "_" + file.name;
-		supabase.storage.from("images").upload(fileName, file, {
-			cacheControl: "3600",
-			upsert: false,
-		}).then(
-            ()=>{
-                const publicUrl = supabase.storage.from("images").getPublicUrl(fileName).data.publicUrl;
-                resolve(publicUrl);
-            }
-        ).catch((error)=>{
-            reject(error);
-        })
-	});
+		const fileName = `${timeStamp}_${file.name}`;
+
+		// --- Upload file ---
+		const { data, error } = await supabase.storage
+			.from("project bucket")
+			.upload(fileName, file, {
+				cacheControl: "3600",
+				upsert: false,
+				contentType: file.type
+			});
+
+		if (error) throw error;
+
+		// --- Get public URL ---
+		const { data: urlData } = supabase.storage
+			.from("project bucket")
+			.getPublicUrl(fileName);
+
+		return urlData.publicUrl;
+	} catch (err) {
+		console.error("Upload failed:", err.message);
+		throw err;
+	}
 }
