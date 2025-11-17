@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BiPlus } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ProductDeleteButton from "../../components/productdeletebutton";
 
 export default function Adminproductpage() {
@@ -81,6 +82,16 @@ export default function Adminproductpage() {
                   }`}
                 >
                   {item.isavailable ? "Yes" : "No"}
+                </td>
+
+                <td className="px-3 py-3 text-sm ">
+                    <div className="inline-flex items-center gap-2">
+                        <Link to="/admin/update-product"
+                              className=" w-[75px] h-[35px] rounded-[10px] bg-accent/20 hover:bg-primary flex justify-center items-center text-accent text-2xl hover:scale-105 transition-transform right-8 bottom-8" state={item}  >
+                              Edit
+                        </Link>
+                    </div>
+
                 </td>
 
                 <td className="px-3 py-3 text-sm ">

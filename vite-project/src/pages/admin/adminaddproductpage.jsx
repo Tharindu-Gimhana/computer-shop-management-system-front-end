@@ -81,7 +81,7 @@ export default function Adminaddproductpage(){
                 brand,
                 model,
                 stock: Number(stock),
-                isavailable: isavailable === "true", // convert string to boolean
+                isavailable 
             },{
                 headers:{
                     Authorization: `Bearer ${token}`
@@ -212,7 +212,7 @@ export default function Adminaddproductpage(){
 
                      <div className="my-[10px]">
                        <label className="block text-left w-full text-blue-950">isavailable</label>
-                       <select onChange={(e)=>{setisavailable(e.target.value)}}
+                       <select value={isavailable ? "true" : "false"} onChange={(e)=>{setisavailable(e.target.value === "true")}}
                         className="w-full h-[40px] rounded-2xl focus:outline-none focus:ring-2 text-amber-950 focus:ring-amber-950 px-[20px] border-2 border-amber-950 m-2">
                            <option value="true">Yes</option>
                            <option value="false">No</option>
