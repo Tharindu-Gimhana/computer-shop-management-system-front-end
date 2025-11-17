@@ -16,7 +16,7 @@ export default function ProductCard(props) {
 					className="w-full h-full absolute bg-white primary-image transition-opacity duration-500 object-cover"/>
 			</div>
 			
-			<div className="w-full h-[150px] p-2 flex flex-col  justify-between">
+			<div className="w-full h-[150px] p-2 flex flex-col  justify-between bg-emerald-400">
 				<h1 className="text-center text-lg">{product.name}</h1>
 				<div className="w-full flex flex-col items-center">
 					{
@@ -33,7 +33,7 @@ export default function ProductCard(props) {
 			</div>
 
 			<div className="w-full h-[150px] bottom-0 opacity-0 absolute buttons bg-white flex flex-row gap-4 justify-center items-center transition-opacity duration-300">
-				<Link to={"/overview/" + product.productID} className="border-2 border-accent text-accent hover:bg-accent hover:text-white transition-colors duration-150 h-[50px] w-[150px] flex justify-center items-center">View Details</Link >
+				<Link to={"/overview/" + product.productid} className="border-2 border-accent text-accent hover:bg-accent hover:text-white transition-colors duration-150 h-[50px] w-[150px] flex justify-center items-center">View Details</Link >
 			</div>
 			
 		</div>

@@ -117,7 +117,7 @@ export default function Adminupdateproducts(){
                 <div className="w-full bg-white p-[20px] flex flex-wrap justify-between">
                     <div className="my-[10px] items-start w-full border-amber-950 ">
                        <label className="block text-left w-full text-blue-950 ">product id</label>
-                       <input value={productid} 
+                       <input disabled value={productid} 
                        onChange={(e)=>{setproductid(e.target.value)}}
                        className= "w-full h-[40px] rounded-2xl focus:outline-none focus:ring-2 text-amber-950 focus:ring-amber-950 px-[20px] border-2 border-amber-950 m-2">
 

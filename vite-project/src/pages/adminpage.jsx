@@ -31,10 +31,9 @@ export default function Adminpage(){
                         <Route path="/" element={<h1>this is admin path</h1>}></Route>
                         <Route path="/users" element={<h1>this is users path</h1>}></Route>
                         <Route path="/products" element={<Adminproductpage></Adminproductpage>}></Route>
-                        <Route path="/reviews" element={<h1>this is reviews path</h1>}></Route>
                         <Route path="/add-product" element={<Adminaddproductpage/>}></Route>
-                        <Route path="/*" element={<h1>go home page</h1>}></Route>
                         <Route path="/update-product" element={<Adminupdateproducts/>}></Route>
+                        
                 </Routes>
             </div>
 

@@ -14,11 +14,10 @@ function App() {
        <BrowserRouter>
          <Toaster />
             <Routes path="/">
-                
-                <Route path="/" element={<HomePage />}> </Route>
+
+                <Route path="/*" element={<HomePage />}> </Route>
                 <Route path="login" element={<Loginpage />}></Route>
                 <Route path="admin/*" element={<Adminpage/>}></Route>
-                <Route path="/*" element={<Adminpage/>}></Route> 
           </Routes>
       
     
