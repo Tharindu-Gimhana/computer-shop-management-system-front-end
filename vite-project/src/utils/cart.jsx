@@ -28,14 +28,14 @@ export function getCart(){
         localStorage.setItem("cart", "[]");
         return []
     }else{
-        const cart = JSON.parse(cartString);
+        const cart = JSON.parse(cartString);   //json.parse is used to convert string to array/json
         return cart;
     }
 }
 
 
 
-export function addToCart(product, quantity){
+export function addToCart(product, quantity){   //when we add to cart, we pass the whole product object along with quantity
 
     const cart = getCart();
 
@@ -43,13 +43,13 @@ export function addToCart(product, quantity){
 
     const index = cart.findIndex(
         (item)=>{
-            return item.productID == product.productid
+            return item.productid == product.productid
         }
     )
     if(index == -1){
         cart.push(
             {
-                productID: product.productid,
+                productid: product.productid,
                 name: product.name,
                 price: product.price,
                 labelledPrice: product.labelledPrice,

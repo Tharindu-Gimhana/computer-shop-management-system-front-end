@@ -3,6 +3,7 @@ import { FaRegUser } from "react-icons/fa";
 import Adminproductpage from "./admin/adminproductpage";
 import Adminaddproductpage from "./admin/adminaddproductpage";
 import Adminupdateproducts from "./admin/adminupdateproducts";
+import AdminOrdersPage from "./admin/adminorderspage";
 
 
 export default function Adminpage(){
@@ -28,7 +29,7 @@ export default function Adminpage(){
             
             <div className="w-[calc(100%-300px)] overflow-y-scroll h-full max-h-full bg-amber-500 border-8 rounded-2xl border-accent">
                 <Routes path="/">
-                        <Route path="/" element={<h1>this is admin path</h1>}></Route>
+                        <Route path="/" element={<AdminOrdersPage />}></Route>
                         <Route path="/users" element={<h1>this is users path</h1>}></Route>
                         <Route path="/products" element={<Adminproductpage></Adminproductpage>}></Route>
                         <Route path="/add-product" element={<Adminaddproductpage/>}></Route>

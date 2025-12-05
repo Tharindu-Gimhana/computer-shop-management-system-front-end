@@ -20,10 +20,10 @@ export default function Loginpage(){
                 "email": email,
                 "password": password
         });
-        console.log(res.data)
+        console.log(res.data.token)
         toast.success("login successfull");
         localStorage.setItem("token", res.data.token);
-        console.log(res.data.token);
+        console.log(res.data.role);
 
     } 
     catch(err){
