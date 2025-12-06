@@ -39,7 +39,7 @@ export default function CheckoutPage() {
 
 		cart.forEach((item) => {
 			orderItems.push({
-				productID: item.productID,
+				productID: item.productid,
 				quantity: item.quantity
 			})
 		});
@@ -158,7 +158,7 @@ export default function CheckoutPage() {
 
 
 			<div className="w-[50%] h-[150px] rounded-xl overflow-hidden shadow-2xl my-1 flex justify-between items-center">
-				<button
+				<button onClick={submitOrder}
                 className="self-center ml-4 px-6 py-3 rounded bg-accent text-white hover:bg-accent/90 transition"
 				>
 					Order Now

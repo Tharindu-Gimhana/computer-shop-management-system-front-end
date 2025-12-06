@@ -10,7 +10,7 @@ export default function AdminOrdersPage() {
         const token = localStorage.getItem("token");
 		if (!loaded) {
 			axios
-				.get(import.meta.env.VITE_BACKEND_URL + "/orders", {
+				.get(import.meta.env.VITE_BACKENDURL + "/orders", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -27,7 +27,7 @@ export default function AdminOrdersPage() {
 		<div
 			className="w-full flex justify-center p-10 relative
       bg-gradient-to-b from-primary to-white text-secondary"
-		>
+		> 
 			{loaded ? (
 				<table
 					className="w-full max-w-7xl table-auto border-separate border-spacing-0
