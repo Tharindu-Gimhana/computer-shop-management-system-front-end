@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Loader from "../../components/loader";
+import ViewOrderInfo from "../../components/vieworderinfo";
 
 export default function AdminOrdersPage() {
 	const [orders, setOrders] = useState([]);
@@ -34,7 +35,7 @@ export default function AdminOrdersPage() {
         rounded-2xl overflow-hidden shadow-xl bg-white/70 
         "
 				>
-					<thead className="sticky top-0 z-10">
+					<thead className="sticky top-0">
 						<tr className="bg-secondary text-primary/95">
 							<th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">
 								Order ID
@@ -88,6 +89,10 @@ export default function AdminOrdersPage() {
                                     </td>
                                     <td className="px-4 py-3 text-sm font-medium text-secondary/90">
                                     </td>
+
+									<td className="px-4 py-3 text-sm font-medium text-secondary/90">
+										<ViewOrderInfo order={order} />
+									</td>
 									
 								</tr>
 							);
