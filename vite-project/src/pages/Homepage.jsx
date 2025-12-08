@@ -15,7 +15,7 @@ return(
   <div className="flex-1 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 p-10 rounded-t-3xl text-white min-h-screen w-screen flex-col overflow-auto">
    
 
-  <div className="hidden md:flex items-center gap-8 text-lg">
+  <div className="items-center gap-8 text-lg">
         <Routes>
                         <Route path="/products" element={<ProductPage />} />
                         <Route path="/about" element={<span>About Page</span>} />

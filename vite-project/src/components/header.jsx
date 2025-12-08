@@ -2,6 +2,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import { BiShoppingBag } from "react-icons/bi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
+import UserData from "./userdata";
 
 
 
@@ -15,13 +16,17 @@ return(
                 setSideBarOpen(true);
             }
             }/> 
-            <img src="./src/assets/react.svg" className="h-[70%]" alt="logo" />
+            <img src="./src/assets/react.svg" className="h-[70%] flex" alt="logo" />
             <div className="w-full h-full text-xl hidden lg:flex text-primary justify-center items-center  gap-[30px]">
                 <Link to="/">Home</Link>
                 <Link to="/products">Products</Link>
                 <Link to="/about">About</Link>
                 <Link to="/contact">Contact</Link>         
             </div>
+            <div className="absolute right-24 top-0 h-full  items-center hidden lg:flex">
+            <UserData />
+            </div>
+            
 
             <Link to="/cart" className="absolute right-4 top-1/2 -translate-y-1/2 text-primary text-2xl mr-10">
                 <BiShoppingBag />
@@ -32,7 +37,7 @@ return(
 					<div className=" w-[250px] h-screen flex-col relative">
 						<div className="absolute w-full h-full bg-white left-[-250px] transform-flat translate-x-[250px] transition-transform duration-1000 flex flex-col">
 							<div className="w-full h-[100px] bg-accent flex justify-center items-center">
-								<img src="/logo.png" className="h-full" alt="logo" />
+								<img src="./src/assets/react.svg" className="h-[70%] left-0 flex" alt="logo" />
 								<GiHamburgerMenu
 									onClick={() => {
 										setSideBarOpen(false);

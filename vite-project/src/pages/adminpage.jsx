@@ -4,12 +4,42 @@ import Adminproductpage from "./admin/adminproductpage";
 import Adminaddproductpage from "./admin/adminaddproductpage";
 import Adminupdateproducts from "./admin/adminupdateproducts";
 import AdminOrdersPage from "./admin/adminorderspage";
+import { useState } from "react";
+import Loader from "../components/loader";
 
 
 export default function Adminpage(){
+        const [user, setUser] = useState(null);
+        useEffect(()=>{
+        const token = localStorage.getItem("token");
+        if(token == null){
+            window.location.href = "/";
+            return;
+        }
+        axios.get(import.meta.env.VITE_BACKENDURL + "/users/", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((response)=>{
+            if(response.data.role == "admin"){
+                setUser(response.data);
+            }else{
+                window.location.href = "/";
+            }
+        }).catch(()=>{
+            window.location.href = "/login";
+        })
+    },[])
+
+
+
+
 
     return(
         <div className="w-screen h-screen bg-purple-500 flex">
+            
+            {user ?
+            <>
             <div className="w-[300px] h-full bg-green-800">
                 <div className="w-full h-[100px] bg-blue-300 flex items-center">
                     <img src="src/assets/react.svg" className="h-full"/>
@@ -37,9 +67,10 @@ export default function Adminpage(){
                         
                 </Routes>
             </div>
-
+                  </>:
+                <Loader />}
             
         </div>
 
-    )
+    );
 }

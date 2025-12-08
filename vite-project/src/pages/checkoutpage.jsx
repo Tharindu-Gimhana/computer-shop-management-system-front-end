@@ -66,15 +66,27 @@ export default function CheckoutPage() {
 
 
 	return (
-		<div className="w-full flex flex-col items-center p-[20px]">
+		<div className="w-full flex flex-col items-center lg:p-[20px]">
 			{cart.map((item , index) => {
 				return (
-					<div className="w-[50%] h-[150px] rounded-xl overflow-hidden shadow-2xl my-1 flex justify-between">
+					<div key={index} className="w-full h-[150px] lg:w-[50%] lg:h-[150px] rounded-x pt-[20px] overflow-hidden relative  shadow-2xl  my-1 flex justify-between">
+
+						<h4 className="lg:hidden w-full overflow-hidden h-[25px] absolute top-[0px] ">
+							{item.name}
+						</h4>
 						<img
 							src={item.image}
-							className="h-full aspect-square object-cover"
+							className="h-[80px] lg:h-full aspect-square object-cover"
 						/>
-						<div className="flex flex-col justify-center pl-4 w-[300px]">
+						{item.labelledPrice > item.price && (
+								<h2 className="lg:hidden text-secondary/80 line-through decoration-gold/70 decoration-2 mr-2 text-sm">
+									LKR. {item.labelledPrice.toFixed(2)}
+								</h2>
+							)}
+							<h2 className="lg:hidden text-sm text-accent font-semibold mt-1 lg:mt-2">
+								LKR. {item.price.toFixed(2)}
+							</h2>
+						<div className="hidden lg:flex flex-col justify-center pl-4 w-[300px]">
 							<h1 className="text-2xl font-semibold relative hover:[&_.tooltip]:opacity-100">
 								<span className="opacity-0 tooltip italic text-sm absolute bottom-[-50px] bg-accent text-white p-2 rounded-lg">
 									{item.name}
@@ -93,7 +105,7 @@ export default function CheckoutPage() {
 							</h2>
 							<h3 className="text-lg mt-2">{item.productid}</h3>
 						</div>
-						<div className="h-full flex flex-row items-center gap-4">
+						<div className="overflow-hidden min-h-full flex flex-row items-center gap-4">
 							<div className="h-full flex flex-col justify-center items-center">
 								<BsChevronUp
 									onClick={() => {
@@ -117,7 +129,7 @@ export default function CheckoutPage() {
 									className="rotate-180 text-2xl cursor-pointer hover:text-accent transition"
 								/>
 							</div>
-							<span className="pr-4 text-lg font-semibold w-[150px] text-right">
+							<span className=" pr-4 text-lg font-semibold w-[150px] text-right">
 								LKR. {(item.price * item.quantity).toFixed(2)}
 							</span>
 						</div>
@@ -126,8 +138,8 @@ export default function CheckoutPage() {
 			})}
 			
 
-			<div className="w-[50%] p-4  rounded-xl overflow-hidden shadow-2xl my-1 flex flex-wrap justify-between items-center">
-				<div className="flex flex-col  w-[50%]">
+			<div className="lg:w-[50%] p-4 rounded-xl overflow-hidden shadow-2xl my-1 flex flex-wrap justify-between items-center">
+				<div className="flex flex-col lg:w-[50%]">
 					<label>Name</label>
 					<input
 						type="text"
@@ -136,7 +148,7 @@ export default function CheckoutPage() {
 						className="  px-6 py-3 rounded border-2 border-secondary/30 focus:border-accent outline-none transition w-[300px]"
 					/>
 				</div>
-				<div className="flex flex-col w-[50%]">
+				<div className="flex flex-col lg:w-[50%]">
 					<label>Phone</label>
 					<input
 						type="text"
@@ -157,7 +169,7 @@ export default function CheckoutPage() {
 			</div>
 
 
-			<div className="w-[50%] h-[150px] rounded-xl overflow-hidden shadow-2xl my-1 flex justify-between items-center">
+			<div className="w-full lg:w-[50%] h-[150px] rounded-xl overflow-hidden shadow-2xl my-1 flex justify-between items-center">
 				<button onClick={submitOrder}
                 className="self-center ml-4 px-6 py-3 rounded bg-accent text-white hover:bg-accent/90 transition"
 				>
