@@ -45,12 +45,12 @@ export default function RegisterPage() {
         setIsLoading(true);
 		try {
 			await axios.post(
-				import.meta.env.VITE_BACKENDURL + "/users/",
+				import.meta.env.VITE_BACKENDURL+ "/users/",
 				{
 					email: email.trim(),
 					password: password.trim(),
-                    firstName: firstName.trim(),
-                    lastName: lastName.trim(),
+                    firstname: firstName.trim(),
+                    lastname: lastName.trim(),
 				}
 			);
 			console.log();

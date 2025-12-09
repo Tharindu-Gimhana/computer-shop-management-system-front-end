@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Await, Link } from "react-router-dom";
+import { Await, Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
 
 
 export default function Loginpage(){
@@ -10,6 +12,30 @@ export default function Loginpage(){
 
     const [email,setemail]=useState("")
     const [password,setpassword]=useState("")
+    const navigate = useNavigate();
+    const googleLogin = useGoogleLogin({
+		onSuccess: (response) => { 
+			setIsLoading(true);
+			axios.post(import.meta.env.VITE_BACKENDURL + "/users/google-login", {
+				token: response.access_token,
+			}).then((res) => {
+				localStorage.setItem("token", res.data.token);
+				if (res.data.role == "admin") {
+					navigate("/admin");
+				} else {
+					navigate("/");
+				}
+				toast.success("Login successful!.");
+				setIsLoading(false);
+			}).catch((err) => {
+				console.log(err);
+			});
+			setIsLoading(false);
+		 },
+		onError: () => { toast.error("Google Login Failed"); },
+		onNonOAuthError: () => { toast.error("Google Login Failed"); },
+	})
+
 
     async function login(){
         console.log("email -",email)
@@ -24,6 +50,8 @@ export default function Loginpage(){
         toast.success("login successfull");
         localStorage.setItem("token", res.data.token);
         console.log(res.data.role);
+        navigate("/products");
+        
 
     } 
     catch(err){
@@ -59,6 +87,9 @@ export default function Loginpage(){
                     type="password" placeholder="enter password" className="w-full h-[50px] mb-[20px] p-1.5 border-2 border-black text-accent text-shadow-white focus:outline-none focus:ring-2 focus:ring-amber-500 "></input>
 
                     <button onClick={login} className="w-full h-[50px] bg-amber-500 text-secondary hover:bg-blue-600">Login</button>
+
+                    <button onClick={googleLogin} className="mt-2 w-full h-[50px] bg-amber-500 text-secondary hover:bg-blue-600">Login with Google</button>
+                    
                     <h2 className="text-white text-1xl italic">don't have an account? <Link to={"/register"} className="not-italic">Register now</Link></h2>
 
                 </div>
