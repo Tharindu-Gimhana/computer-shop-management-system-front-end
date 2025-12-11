@@ -4,6 +4,7 @@ import Header from "../components/header";
 import ProductOverview from "./productoverviewpage";
 import CartPage from "./cartpage";
 import CheckoutPage from "./checkoutpage";
+import Orderspagecustomer from "./orderspagecustomer";
 
 export default function HomePage(){
 return(
@@ -24,6 +25,7 @@ return(
                         <Route path="/*" element={<span>Page not found</span>} />
                         <Route path="/checkout" element={<CheckoutPage />} />
                         <Route path="/cart" element={<CartPage />} />
+                        <Route path="/orders" element={<Orderspagecustomer />} />
         </Routes>
   </div>
     </div>

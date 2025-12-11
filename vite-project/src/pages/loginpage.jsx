@@ -13,8 +13,10 @@ export default function Loginpage(){
     const [email,setemail]=useState("")
     const [password,setpassword]=useState("")
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
     const googleLogin = useGoogleLogin({
 		onSuccess: (response) => { 
+            console.log(response);
 			setIsLoading(true);
 			axios.post(import.meta.env.VITE_BACKENDURL + "/users/google-login", {
 				token: response.access_token,
@@ -85,6 +87,8 @@ export default function Loginpage(){
                         console.log("input field change")
                     }}
                     type="password" placeholder="enter password" className="w-full h-[50px] mb-[20px] p-1.5 border-2 border-black text-accent text-shadow-white focus:outline-none focus:ring-2 focus:ring-amber-500 "></input>
+
+                    <h2 className="text-orange-300 text-1xl pt-0 pb-2"><Link to={"/forgot-password"} className="text-orange-300 text-1xl pt-0 pb-2not-italic">Forgot password?</Link></h2>
 
                     <button onClick={login} className="w-full h-[50px] bg-amber-500 text-secondary hover:bg-blue-600">Login</button>
 

@@ -7,6 +7,7 @@ import Loginpage from './pages/loginpage'
 import HomePage from './pages/Homepage'
 import RegisterPage from './pages/registerpage'
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import ForgetPasswordPage from './pages/forgetpasswordpage'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -22,6 +23,9 @@ function App() {
                 <Route path="login" element={<Loginpage />}></Route>
                 <Route path="admin/*" element={<Adminpage/>}></Route>
                 <Route path="/register" element={<RegisterPage/>}></Route>
+                <Route path="/forgot-password" element={<ForgetPasswordPage />} />
+
+
           </Routes>
       
     
