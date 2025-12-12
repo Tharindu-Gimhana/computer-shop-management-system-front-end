@@ -68,7 +68,7 @@ export default function RegisterPage() {
 	}
 
 	return (
-    <div className="w-full h-screen bg-[url('/bg.jpg')] bg-center bg-cover bg-no-repeat relative flex">
+    <div className="w-screen h-screen bg-[url('/bg.jpg')] bg-center bg-cover bg-no-repeat relative flex">
 
         {/* Overlay for dark neon contrast */}
         <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px] z-0"></div>

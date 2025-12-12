@@ -28,7 +28,7 @@ export default function ProductPage(){
 				<Loader />
 			) : (
 				<div className="w-full flex justify-center p-4 flex-row flex-wrap text-accent">
-	<div className="w-full h-[110px] sticky top-0 transparent flex justify-center items-center mb-4 shadow-lg z-20">
+	<div className="w-full h-[110px] sticky top-0 transparent flex justify-center items-center mb-4 shadow-lg z-20 mt-24">
 		<div className="relative w-full max-w-xl">
 			<span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
 				🔍

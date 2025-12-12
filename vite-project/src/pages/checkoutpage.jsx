@@ -66,7 +66,7 @@ export default function CheckoutPage() {
 
 
 	return (
-		<div className="w-full flex flex-col items-center lg:p-[20px]">
+		<div className="w-full flex flex-col items-center mt-24 lg:p-[20px]">
 			{cart.map((item , index) => {
 				return (
 					<div key={index} className="w-full h-[150px] lg:w-[50%] lg:h-[150px] rounded-x pt-[20px] overflow-hidden relative  shadow-2xl  my-1 flex justify-between">

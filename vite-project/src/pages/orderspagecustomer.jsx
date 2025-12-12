@@ -26,7 +26,7 @@ export default function Orderspagecustomer() {
     }, [loaded]);
 
     return (
-    <div className="w-full flex justify-center p-10 bg-gray-50 text-gray-800">
+    <div className="w-full flex justify-center p-10 mt-24 bg-gray-50 text-gray-800 ">
         {loaded ? (
             <table className="w-full max-w-7xl table-auto border-collapse rounded-xl overflow-hidden shadow-lg bg-white">
                 <thead className="sticky top-0 z-10">

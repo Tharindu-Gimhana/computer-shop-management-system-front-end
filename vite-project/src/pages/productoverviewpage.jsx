@@ -40,7 +40,7 @@ export default function ProductOverview(){
         }
         {
             status == "success" &&
-            <div className="w-full h-[calc(100vh-100px)] flex flex-col lg:flex-row ">
+            <div className="w-full h-[calc(100vh-100px)] flex flex-col lg:flex-row mt-24 ">
                 <h1 className="lg:hidden sticky top-0 text-4xl font-semibold">{product.name}</h1>
 
                 <div className="w-full lg:w-1/2 h-full flex justify-center items-center ">
