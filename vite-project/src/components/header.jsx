@@ -1,80 +1,113 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BiShoppingBag } from "react-icons/bi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
 import UserData from "./userdata";
 
+export default function Header() {
+  const [sideBarOpen, setSideBarOpen] = useState(false);
 
+  return (
+    <header className="w-full h-[100px] flex bg-[#051743] text-white items-center justify-between px-6 shadow-md fixed top-0 left-0 z-50">
+      {/* Hamburger menu for mobile */}
+      <GiHamburgerMenu
+        className="lg:hidden text-2xl text-white cursor-pointer"
+        onClick={() => setSideBarOpen(true)}
+      />
 
+      {/* Logo */}
+      <img
+        src="./src/assets/logo.png"
+        alt="logo"
+        className="h-[70%] flex cursor-pointer"
+      />
 
+      {/* Desktop navigation links */}
+      <div className="hidden lg:flex w-full h-full justify-center items-center gap-[30px] text-xl">
+        <Link to="/" className="text-white hover:text-amber-400 transition-colors">
+          Home
+        </Link>
+        <Link to="/products" className="text-white hover:text-amber-400 transition-colors">
+          Products
+        </Link>
+        <Link to="/about" className="text-white hover:text-amber-400 transition-colors">
+          About
+        </Link>
+        <Link to="/contact" className="text-white hover:text-amber-400 transition-colors">
+          Contact
+        </Link>
+      </div>
 
-export default function Header(){
-    const [sideBarOpen , setSideBarOpen] =  useState(false);
-return(
-<header className="w-full h-[100px] flex bg-[#051743] text-white flex items-center justify-between px-6 shadow-md fixed top-0 left-0 z-50 relative ">
-            <GiHamburgerMenu className="lg:hidden text-primary text-2xl" onClick={()=> {
-                setSideBarOpen(true);
-            }
-            }/> 
-            <img src="./src/assets/react.svg" className="h-[70%] flex" alt="logo" />
-            <div className="w-full h-full text-xl hidden lg:flex text-primary justify-center items-center  gap-[30px]">
-                <Link to="/">Home</Link>
-                <Link to="/products">Products</Link>
-                <Link to="/about">About</Link>
-                <Link to="/contact">Contact</Link>         
+      {/* User data (desktop) */}
+      <div className="hidden lg:flex absolute right-24 top-0 h-full items-center">
+        <UserData />
+      </div>
+
+      {/* Shopping cart icon */}
+      <Link
+        to="/cart"
+        className="absolute right-4 top-1/2 -translate-y-1/2 text-primary text-2xl"
+      >
+        <BiShoppingBag />
+      </Link>
+
+      {/* Mobile sidebar */}
+      {sideBarOpen && (
+        <div className="fixed lg:hidden w-full h-screen top-0 left-0 bg-black/50 z-40">
+          <div className="relative w-[250px] h-full bg-white shadow-lg">
+            {/* Sidebar header */}
+            <div className="w-full h-[100px] bg-accent flex items-center justify-between px-4">
+              <img
+                src="./src/assets/logo.png"
+                alt="logo"
+                className="h-[70%]"
+              />
+              <GiHamburgerMenu
+                className="text-white text-2xl cursor-pointer"
+                onClick={() => setSideBarOpen(false)}
+              />
             </div>
-            <div className="absolute right-24 top-0 h-full  items-center hidden lg:flex">
-            <UserData />
+
+            {/* Sidebar links */}
+            <div className="flex flex-col mt-10 pl-6 gap-6 text-xl text-gray-800">
+              <Link
+                to="/"
+                onClick={() => setSideBarOpen(false)}
+                className="hover:text-amber-500 transition-colors"
+              >
+                Home
+              </Link>
+              <Link
+                to="/products"
+                onClick={() => setSideBarOpen(false)}
+                className="hover:text-amber-500 transition-colors"
+              >
+                Products
+              </Link>
+              <Link
+                to="/about"
+                onClick={() => setSideBarOpen(false)}
+                className="hover:text-amber-500 transition-colors"
+              >
+                About
+              </Link>
+              <Link
+                to="/contact"
+                onClick={() => setSideBarOpen(false)}
+                className="hover:text-amber-500 transition-colors"
+              >
+                Contact
+              </Link>
             </div>
-            
+          </div>
 
-            <Link to="/cart" className="absolute right-4 top-1/2 -translate-y-1/2 text-primary text-2xl mr-10">
-                <BiShoppingBag />
-            </Link>
-
-            {sideBarOpen && (
-				<div className="fixed lg:hidden w-[100vw] h-screen top-0 left-0 bg-black/50 z-20 transition-all duration-300">
-					<div className=" w-[250px] h-screen flex-col relative">
-						<div className="absolute w-full h-full bg-white left-[-250px] transform-flat translate-x-[250px] transition-transform duration-1000 flex flex-col">
-							<div className="w-full h-[100px] bg-accent flex justify-center items-center">
-								<img src="./src/assets/react.svg" className="h-[70%] left-0 flex" alt="logo" />
-								<GiHamburgerMenu
-									onClick={() => {
-										setSideBarOpen(false);
-									}}
-									className="text-white my-auto text-2xl ml-6 lg:hidden rotate-180"
-								/>
-							</div>
-                            <div className="w-full h-full flex flex-col text-xl text-secondary justify-start items-start gap-6 mt-10 pl-6">
-                                <a
-                                    className="hover:text-secondary transition"
-                                    href="/"
-                                    onClick={() => setSideBarOpen(false)}
-                                >
-                                    Home
-                                </a>
-                                <a
-                                    className="hover:text-secondary transition"
-                                    href="/products"
-                                    onClick={() => setSideBarOpen(false)}
-                                >
-                                    Products
-                                </a>
-                                <a
-                                    className="hover:text-secondary transition"
-                                    href="/about"
-                                    onClick={() => setSideBarOpen(false)}
-                                >
-                                    About
-                                </a>
-                            </div>
-						</div>
-					</div>
-				</div>
-			)}
-
-
-            
-        </header>
-)}
-
+          {/* Click outside to close */}
+          <div
+            className="w-full h-full"
+            onClick={() => setSideBarOpen(false)}
+          ></div>
+        </div>
+      )}
+    </header>
+  );
+}

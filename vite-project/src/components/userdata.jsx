@@ -34,7 +34,7 @@ export default function UserData(){
                                 localStorage.removeItem("token");
                                 window.location.href = "/login";
                             }else if(e.target.value == "my-orders"){
-                                window.location.href = "/products";
+                                window.location.href = "/orders";
                             }
                             setSelectedOption("user")
                         }

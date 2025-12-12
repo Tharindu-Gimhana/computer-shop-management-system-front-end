@@ -6,7 +6,7 @@ export default function ProductCard(props) {
     
 
 	return (
-		<Link to={"/overview/" + product.productid} className="w-[300px] h-[400px]  m-4 shadow-2xl cursor-pointer relative hover:[&_.buttons]:opacity-100 hover:[&_.primary-image]:opacity-0">
+		<Link to={"/overview/" + product.productid} className="w-[300px] h-[400px]  m-4 shadow-2xl cursor-pointer rounded-2xl relative hover:[&_.buttons]:opacity-100 hover:[&_.primary-image]:opacity-0">
 			<div className="w-full h-[250px]  relative">
 				<img
 					src={product.images[1]}
