@@ -49,7 +49,7 @@ export default function Adminpage(){
                 {/* Logo/Header Section: Clean, centered, uses a primary color for accent */}
                 <div className="bg-indigo-600 p-3 text-white flex items-center justify-center">
                     {/* Assuming 'src/assets/logo.png' is available or replace with a text logo */}
-                    <img src="src/assets/logo.png" alt="Logo" className=" h-[80px]"/> 
+                    <img src="/logo.png" alt="Logo" className=" h-[80px]"/> 
                     <h2 className="text-2xl font-semibold tracking-wider">Admin Panel</h2>
                 </div>
 

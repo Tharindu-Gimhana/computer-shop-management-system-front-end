@@ -17,7 +17,7 @@ export default function Header() {
 
       {/* Logo */}
       <img
-        src="./src/assets/logo.png"
+        src="/logo.png"
         alt="logo"
         className="h-[70%] flex cursor-pointer"
       />
@@ -58,7 +58,7 @@ export default function Header() {
             {/* Sidebar header */}
             <div className="w-full h-[100px] bg-accent flex items-center justify-between px-4">
               <img
-                src="./src/assets/logo.png"
+                src="/logo.png"
                 alt="logo"
                 className="h-[70%]"
               />
