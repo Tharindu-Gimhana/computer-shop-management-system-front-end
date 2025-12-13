@@ -73,7 +73,7 @@ export default function Loginpage(){
         {/* LEFT SIDE */}
         <div className="w-[50%] h-full flex flex-col justify-center items-center relative z-10 text-white px-6">
             <img
-                src="/src/assets/logo.png"
+                src="/logo.png"
                 className="object-contain mb-6 w-[40%] drop-shadow-[0_0_25px_rgba(255,255,255,0.6)]"
             />
 
