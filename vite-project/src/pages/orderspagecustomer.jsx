@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Loader from "../components/loader";
-import ViewOrderInfo from "../components/vieworderinfo";
 import ViewOrderInfoCustomer from "../components/customervieworderinfo";
 
 export default function Orderspagecustomer() {
