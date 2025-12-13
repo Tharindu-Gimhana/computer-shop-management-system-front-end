@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { BiPlus } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import ProductDeleteButton from "../../components/productdeletebutton";
+import ProductDeleteButton from "../../components/ProductDeleteButton";
 
 export default function Adminproductpage() {
   const [product, setproduct] = useState([]);
