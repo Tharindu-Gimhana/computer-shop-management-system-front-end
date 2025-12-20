@@ -30,14 +30,14 @@ export default function ProductPage(){
 				<div className="w-full flex justify-center p-4 flex-row flex-wrap text-accent">
 	<div className="w-full h-[110px] sticky top-0 transparent flex justify-center items-center mb-4 shadow-lg z-20 mt-24">
 		<div className="relative w-full max-w-xl">
-			<span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
+			<span className="absolute left-4 top-1/2 -translate-y-1/2 text-white-400 text-lg">
 				🔍
 			</span>
 
 			<input
 				type="text"
 				placeholder="Search products..."
-				className="w-full pl-12 pr-4 py-3 border border-secondary/30 rounded-2xl outline-none text-gray-700 bg-gray-50/25 shadow-sm transition-all duration-200 focus:ring-2 focus:ring-secondary/40 focus:bg-white focus:border-secondary"
+				className="w-full pl-12 pr-4 py-3 border border-secondary/30 rounded-2xl outline-none text-white/50 bg-gray-50/25 shadow-sm transition-all duration-200 focus:ring-2 focus:ring-secondary/40 focus:bg-white focus:border-secondary"
 				onChange={async (e) => {
 					if (e.target.value === "") {
 						setLoaded(false);

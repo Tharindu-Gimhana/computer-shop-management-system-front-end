@@ -6,6 +6,8 @@ import CartPage from "./cartpage";
 import CheckoutPage from "./checkoutpage";
 import Orderspagecustomer from "./orderspagecustomer";
 import Landingpage from "./landingpage";
+import Contactpage from "./contactpage";
+import Aboutpage from "./aboutpage";
 
 export default function HomePage(){
 return(
@@ -14,14 +16,14 @@ return(
   
   <Header/>
 {/* New colourful space */}
-  <div className="flex-1 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-t-3xl text-white min-h-screen w-screen flex-col overflow-auto">
+  <div className="flex-1 bg-gradient-to-br from-[#020617] via-[#020617] to-[#020617] text-white min-h-screen w-screen flex-col overflow-auto  ">
    
 
   <div className="items-center text-lg">
         <Routes>
                         <Route path="/products" element={<ProductPage />} />
-                        <Route path="/about" element={<span>About Page</span>} />
-                        <Route path="/contact" element={<span>Contact Page</span>} />
+                        <Route path="/about" element={<Aboutpage/>} />
+                        <Route path="/contact" element={<Contactpage />} />
                         <Route path="/overview/:productid" element={<ProductOverview />} />
                         <Route path="/*" element={<Landingpage />} />
                         <Route path="/checkout" element={<CheckoutPage />} />

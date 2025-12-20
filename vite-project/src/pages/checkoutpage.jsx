@@ -10,7 +10,6 @@ export default function CheckoutPage() {
 	const [name, setName] = useState("");
 	const [address, setAddress] = useState("");
 	const [phone, setPhone] = useState("");
-    
 	const [cart, setCart] = useState(location.state);
 
     if(location.state == null){
@@ -18,165 +17,133 @@ export default function CheckoutPage() {
     }
 
     function getCartTotal(){
-        let total = 0;
-        cart.forEach((item)=>{
-            total += item.price * item.quantity
-        }
-        )
-        return total;
+        return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
     }
 
 	function submitOrder() {
 		const token = localStorage.getItem("token");
-		console.log(token);
-		if(token == null){
+		if(!token){
 			toast.error("You must be logged in to place an order");
 			navigate("/login");
 			return;
 		}
 
-		const orderItems = []
-
-		cart.forEach((item) => {
-			orderItems.push({
-				productID: item.productid,
-				quantity: item.quantity
-			})
-		});
+		const orderItems = cart.map(item => ({
+			productID: item.productid,
+			quantity: item.quantity
+		}));
 
 		axios.post(import.meta.env.VITE_BACKENDURL + "/orders", {
-			name: name,
-			address: address,
-			phone: phone,
-			items: orderItems
+			name, address, phone, items: orderItems
 		},{
-			headers: {
-				"Authorization": `Bearer ${token}`
-			}
-		}
-		).then(() => {
+			headers: { "Authorization": `Bearer ${token}` }
+		}).then(() => {
 			toast.success("Order placed successfully");
 			navigate("/orders");
 		}).catch(() => {
 			toast.error("Error placing order");
 		});
-
 	}
 
-
-
 	return (
-		<div className="w-full flex flex-col items-center mt-24 lg:p-[20px]">
-			{cart.map((item , index) => {
-				return (
-					<div key={index} className="w-full h-[150px] lg:w-[50%] lg:h-[150px] rounded-x pt-[20px] overflow-hidden relative  shadow-2xl  my-1 flex justify-between">
+		<div className="w-full flex flex-col items-center mt-24 lg:p-8 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 min-h-screen pb-10">
+            
+            {/* Cart Items */}
+			{cart.map((item, index) => (
+				<div key={index} className="w-full lg:w-[60%] bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl my-3 p-4 flex flex-col lg:flex-row items-center gap-4 transition hover:shadow-3xl">
+                    
+                    {/* Product Image */}
+					<img
+						src={item.image}
+						className="h-[120px] lg:h-[150px] aspect-square rounded-xl object-cover border border-white/20 shadow-md"
+					/>
 
-						<h4 className="lg:hidden w-full overflow-hidden h-[25px] absolute top-[0px] ">
-							{item.name}
-						</h4>
-						<img
-							src={item.image}
-							className="h-[80px] lg:h-full aspect-square object-cover"
-						/>
-						{item.labelledPrice > item.price && (
-								<h2 className="lg:hidden text-secondary/80 line-through decoration-gold/70 decoration-2 mr-2 text-sm">
-									LKR. {item.labelledPrice.toFixed(2)}
-								</h2>
-							)}
-							<h2 className="lg:hidden text-sm text-accent font-semibold mt-1 lg:mt-2">
-								LKR. {item.price.toFixed(2)}
-							</h2>
-						<div className="hidden lg:flex flex-col justify-center pl-4 w-[300px]">
-							<h1 className="text-2xl font-semibold relative hover:[&_.tooltip]:opacity-100">
-								<span className="opacity-0 tooltip italic text-sm absolute bottom-[-50px] bg-accent text-white p-2 rounded-lg">
-									{item.name}
-								</span>
-								{item.name.length > 20
-									? item.name.substring(0, 20) + "..."
-									: item.name}
-							</h1>
-							{item.labelledPrice > item.price && (
-								<h2 className="text-secondary/80 line-through decoration-gold/70 decoration-2 mr-2 text-lg">
-									LKR. {item.labelledPrice.toFixed(2)}
-								</h2>
-							)}
-							<h2 className="text-xl text-accent font-semibold mt-2">
-								LKR. {item.price.toFixed(2)}
-							</h2>
-							<h3 className="text-lg mt-2">{item.productid}</h3>
-						</div>
-						<div className="overflow-hidden min-h-full flex flex-row items-center gap-4">
-							<div className="h-full flex flex-col justify-center items-center">
-								<BsChevronUp
-									onClick={() => {
-                                        // const copiedCart = {...cart}
-										const copiedCart = [...cart]
-                                        copiedCart[index].quantity += 1
-                                        setCart(copiedCart)
-									}}
-									className="text-2xl cursor-pointer hover:text-accent transition"
-								/>
-								<span className="text-lg">{item.quantity}</span>
-								<BsChevronUp
-									onClick={() => {
-										const copiedCart = [...cart]
-                                        copiedCart[index].quantity -= 1
-                                        if(copiedCart[index].quantity < 1){
-                                            copiedCart.splice(index, 1)
-                                        }
-                                        setCart(copiedCart)
-									}}
-									className="rotate-180 text-2xl cursor-pointer hover:text-accent transition"
-								/>
-							</div>
-							<span className=" pr-4 text-lg font-semibold w-[150px] text-right">
-								LKR. {(item.price * item.quantity).toFixed(2)}
-							</span>
-						</div>
+					{/* Product Info */}
+					<div className="flex-1 flex flex-col justify-center lg:pl-4 text-white">
+						<h1 className="text-lg lg:text-2xl font-semibold">{item.name}</h1>
+						<h2 className={`text-md lg:text-lg ${item.labelledPrice > item.price ? "line-through text-gray-400" : "text-amber-400"}`}>
+							{item.labelledPrice > item.price ? `LKR. ${item.labelledPrice.toFixed(2)}` : ""}
+						</h2>
+						<h2 className="text-xl lg:text-2xl font-bold text-accent mt-1">
+							LKR. {item.price.toFixed(2)}
+						</h2>
+						<h3 className="text-sm lg:text-md text-gray-300 mt-1">{item.productid}</h3>
 					</div>
-				);
-			})}
-			
 
-			<div className="lg:w-[50%] p-4 rounded-xl overflow-hidden shadow-2xl my-1 flex flex-wrap justify-between items-center">
-				<div className="flex flex-col lg:w-[50%]">
-					<label>Name</label>
-					<input
-						type="text"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						className="  px-6 py-3 rounded border-2 border-secondary/30 focus:border-accent outline-none transition w-[300px]"
-					/>
+					{/* Quantity Controls */}
+					<div className="flex flex-col items-center justify-center gap-2">
+						<BsChevronUp
+							onClick={() => {
+								const copiedCart = [...cart];
+								copiedCart[index].quantity += 1;
+								setCart(copiedCart);
+							}}
+							className="text-2xl cursor-pointer text-white hover:text-accent transition"
+						/>
+						<span className="text-lg font-semibold text-white">{item.quantity}</span>
+						<BsChevronUp
+							onClick={() => {
+								const copiedCart = [...cart];
+								copiedCart[index].quantity -= 1;
+								if(copiedCart[index].quantity < 1) copiedCart.splice(index, 1);
+								setCart(copiedCart);
+							}}
+							className="rotate-180 text-2xl cursor-pointer text-white hover:text-accent transition"
+						/>
+					</div>
+
+					{/* Item Total */}
+					<span className="text-white font-semibold text-lg lg:text-xl w-[100px] text-right">
+						LKR. {(item.price * item.quantity).toFixed(2)}
+					</span>
 				</div>
-				<div className="flex flex-col lg:w-[50%]">
-					<label>Phone</label>
-					<input
-						type="text"
-						value={phone}
-						onChange={(e) => setPhone(e.target.value)}
-						className="px-6 py-3 rounded border-2 border-secondary/30 focus:border-accent outline-none transition w-[300px]"
-					/>
+			))}
+
+            {/* Customer Info Form */}
+			<div className="lg:w-[60%] bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-6 my-6 flex flex-col gap-6 text-white">
+				<div className="flex flex-col lg:flex-row gap-4 w-full">
+					<div className="flex flex-col flex-1">
+						<label className="mb-1">Name</label>
+						<input
+							type="text"
+							value={name}
+							onChange={(e) => setName(e.target.value)}
+							className="px-4 py-3 rounded-lg border border-white/30 focus:border-accent outline-none bg-white/20 text-white placeholder-white/70 transition"
+							placeholder="Your full name"
+						/>
+					</div>
+					<div className="flex flex-col flex-1">
+						<label className="mb-1">Phone</label>
+						<input
+							type="text"
+							value={phone}
+							onChange={(e) => setPhone(e.target.value)}
+							className="px-4 py-3 rounded-lg border border-white/30 focus:border-accent outline-none bg-white/20 text-white placeholder-white/70 transition"
+							placeholder="e.g., 0712345678"
+						/>
+					</div>
 				</div>
-				<div className="flex flex-col w-full ">
-					<label>Address</label>
+				<div className="flex flex-col">
+					<label className="mb-1">Address</label>
 					<textarea
-						type="text"
 						value={address}
 						onChange={(e) => setAddress(e.target.value)}
-						className=" px-6 py-3 rounded border-2 border-secondary/30 focus:border-accent outline-none transition w-w-full"
+						className="px-4 py-3 rounded-lg border border-white/30 focus:border-accent outline-none bg-white/20 text-white placeholder-white/70 transition resize-none"
+						placeholder="Your delivery address"
 					/>
 				</div>
 			</div>
 
-
-			<div className="w-full lg:w-[50%] h-[150px] rounded-xl overflow-hidden shadow-2xl my-1 flex justify-between items-center">
-				<button onClick={submitOrder}
-                className="self-center ml-4 px-6 py-3 rounded bg-accent text-white hover:bg-accent/90 transition"
+            {/* Order Summary */}
+			<div className="lg:w-[60%] bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-6 my-3 flex flex-col lg:flex-row justify-between items-center text-white">
+				<button 
+					onClick={submitOrder}
+					className="bg-accent text-white px-6 py-3 rounded-lg hover:bg-accent/90 transition font-semibold w-full lg:w-auto"
 				>
 					Order Now
 				</button>
-				<span className="pr-4 text-xl font-bold min-w-[150px] text-right">
-					LKR. {getCartTotal().toFixed(2)}
+				<span className="text-xl lg:text-2xl font-bold mt-4 lg:mt-0">
+					Total: LKR. {getCartTotal().toFixed(2)}
 				</span>
 			</div>
 		</div>

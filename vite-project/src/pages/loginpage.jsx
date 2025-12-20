@@ -52,6 +52,9 @@ export default function Loginpage(){
         toast.success("login successfull");
         localStorage.setItem("token", res.data.token);
         console.log(res.data.role);
+        if(res.data.role=="admin"){
+        navigate("/admin");
+        }
         navigate("/products");
         
 

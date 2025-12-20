@@ -88,7 +88,7 @@ export default function Adminaddproductpage(){
                 }
         });
         toast.success("product added successfully");
-        //navigate("/admin/products");
+        navigate("/admin/products");
         }
         catch(err){
             console.log("error during adding product");

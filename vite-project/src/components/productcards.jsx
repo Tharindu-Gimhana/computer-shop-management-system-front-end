@@ -1,42 +1,52 @@
 import { Link } from "react-router-dom";
 
-export default function ProductCard(props) {
-
-    const product = props.product;
-    
-
+export default function ProductCard({ product }) {
 	return (
-		<Link to={"/overview/" + product.productid} className="w-[300px] h-[400px]  m-4 shadow-2xl cursor-pointer rounded-2xl relative hover:[&_.buttons]:opacity-100 hover:[&_.primary-image]:opacity-0">
-			<div className="w-full h-[250px]  relative">
+		<Link
+			to={"/overview/" + product.productid}
+			className="w-[300px] h-[420px] m-4 rounded-2xl relative cursor-pointer
+			bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl
+			hover:[&_.buttons]:opacity-100 hover:[&_.primary-image]:opacity-0
+			transition-all duration-300"
+		>
+			{/* Image Section */}
+			<div className="w-full h-[250px] relative overflow-hidden rounded-t-2xl">
 				<img
 					src={product.images[1]}
-					className="w-full h-full absolute bg-white object-cover"/>
-				<img
-					src={product.images[0]}
-					className="w-full h-full absolute bg-white primary-image transition-opacity duration-500 object-cover"/>
+					className="w-full h-full absolute object-cover"
+				/>
+				
 			</div>
-			
-			<div className="w-full h-[150px] p-2 flex flex-col  justify-between bg-emerald-400">
-				<h1 className="text-center text-lg">{product.name}</h1>
-				<div className="w-full flex flex-col items-center">
-					{
-						product.labelledPrice > product.price &&
-						<h2 className="text-secondary/80 line-through decoration-gold/70 decoration-2 mr-2">
-							LKR. {product.labelledPrice.toFixed(2)}
-						</h2>
-					}
-					<h2 className="text-accent font-semibold text-2xl">
-						LKR. {product.price.toFixed(2)}
-					</h2>
 
+			{/* Content */}
+			<div className="w-full h-[170px] p-4 flex flex-col justify-between">
+				<h2 className="text-center text-lg font-semibold text-white
+  line-clamp-2 break-words">
+					{product.name}
+				</h2>
+
+				<div className="flex flex-col items-center">
+					{product.labelledPrice > product.price && (
+						<span className="text-sm text-gray-400 line-through">
+							LKR {product.labelledPrice.toFixed(2)}
+						</span>
+					)}
+					<span className="text-2xl font-bold text-amber-400">
+						LKR {product.price.toFixed(2)}
+					</span>
 				</div>
 			</div>
 
-			<div className="w-full h-[150px] bottom-0 opacity-0 absolute buttons bg-white flex flex-row gap-4 justify-center items-center transition-opacity duration-300">
-				<button className="border-2 border-accent text-accent hover:bg-accent hover:text-white transition-colors duration-150 h-[50px] w-[150px] flex justify-center items-center">View Details</button>
+			{/* Hover Buttons */}
+			<div className="buttons absolute inset-0 opacity-0 flex items-center justify-center
+			bg-black/60 backdrop-blur-md transition-opacity duration-300 rounded-2xl">
+				<button
+					className="px-6 py-3 border border-amber-400 text-amber-400
+					hover:bg-amber-400 hover:text-black transition rounded-lg font-semibold"
+				>
+					View Details
+				</button>
 			</div>
-			
 		</Link>
 	);
-
 }

@@ -25,6 +25,8 @@ export default function Adminpage(){
         }).then((response)=>{
             if(response.data.role == "admin"){
                 setUser(response.data);
+
+
             }else{
                 window.location.href = "/";
             }
